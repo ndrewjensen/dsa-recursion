@@ -66,7 +66,18 @@ function findIndex(arr, val, i=0) {
 
 /** gatherStrings: given an object, return an array of all of the string values. */
 
-function gatherStrings(obj) {}
+function gatherStrings(obj, vals=[]) {
+  for (let key in obj){
+    if (typeof obj[key] === 'string') vals.push(obj[key]);
+
+    if (typeof obj[key] === 'object' &&
+          !Array.isArray(obj[key]) &&
+          obj[key] !== null){
+             gatherStrings(obj[key],vals);
+          }
+  }
+  return vals;
+}
 
 // FURTHER STUDY
 
@@ -97,7 +108,30 @@ function binarySearch(arr, val) {
 /** binarySearch: given a sorted array of numbers, and a value,
  * return the index of that value (or -1 if val is not present). */
 
-function binarySearchIndex(arr, val) {}
+function binarySearchIndex(arr, val, left = 0, right = arr.length) {
+  if (arr.length === 0) return -1;
+  if (val < arr[0] || val > arr[arr.length-1]) return -1;
+
+  if (right ===  left && arr[right] !== val) {
+    return -1} else if ( right === left && arr[right] === val) return right;
+
+  const middle = Math.floor((right + left)/2);
+  debugger
+  if (arr[middle] === val) return middle;
+
+
+  if (arr[middle-1]===val) {
+    debugger
+    return middle-1;
+  } else if (arr[middle-1] < val) {
+    debugger
+    return binarySearchIndex(arr,val,middle, right)
+  } else {
+    debugger
+    return binarySearchIndex(arr,val,left,middle)
+  }
+
+}
 
 // you might find the above two problems easier if you change the function signature to:
 //
