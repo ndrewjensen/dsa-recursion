@@ -23,15 +23,29 @@ function longest(words) {
 
 /** everyOther: return a string with every other letter. */
 
-function everyOther(str) {}
+function everyOther(str) {
+  if (str.length === 0) return "";
+  if (str.length < 2) return str[0];
+
+  return str[0] + everyOther(str.slice(2));
+
+}
 
 /** find: return boolean depending on if val exists in array or not. */
 
-function find(arr, val) {}
+function find(arr, val) {
+  if (arr.length === 0) return false;
+
+  return arr[0] === val ? true : find(arr.slice(1), val);
+}
 
 /** isPalindrome: checks whether a string is a palindrome or not. */
 
-function isPalindrome(str) {}
+function isPalindrome(str) {
+  if (str.length === 1) return str[0]
+
+  return str[0] + isPalindrome
+}
 
 /** revString: return a copy of a string, but in reverse. */
 
